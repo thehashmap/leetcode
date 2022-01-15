@@ -1,5 +1,5 @@
 # Merge two binary Max heaps
-##  Easy 
+## Easy 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given two binary max heaps as arrays, merge the given heaps to form a new max heap.</span></p>
 
