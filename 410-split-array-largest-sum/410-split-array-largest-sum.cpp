@@ -1,53 +1,27 @@
 class Solution {
 public:
-    int minimumSubarraysRequired(vector<int>& nums, int maxSumAllowed) {
-        int currentSum = 0;
-        int splitsRequired = 0;
-        
-        for (int element : nums) {
-            // Add element only if the sum doesn't exceed maxSumAllowed
-            if (currentSum + element <= maxSumAllowed) {
-                currentSum += element;
-            } else {
-                // If the element addition makes sum more than maxSumAllowed
-                // Increment the splits required and reset sum
-                currentSum = element;
-                splitsRequired++;
-            }
+    int splitArray(vector<int>& nums, int m) {
+        int low = *max_element(nums.begin(), nums.end());
+        int high = accumulate(nums.begin(), nums.end(), 0);
+        while(low < high){
+            int mid = low + (high - low) / 2;
+            if(check(nums, m, mid)) high = mid;
+            else low = mid + 1;
         }
-        
-        // Return the number of subarrays, which is the number of splits + 1
-        return splitsRequired + 1;
+        return low;
     }
     
-    int splitArray(vector<int>& nums, int m) {
-        // Find the sum of all elements and the maximum element
-        int sum = 0;
-        int maxElement = INT_MIN;
-        for (int element : nums) {
-            sum += element;
-            maxElement = max(maxElement, element);
-        }
-        
-        // Define the left and right boundary of binary search
-        int left = maxElement;
-        int right = sum;
-        int minimumLargestSplitSum = 0;
-        while (left <= right) {
-            // Find the mid value
-            int maxSumAllowed = (left + right) / 2;
-            
-            // Find the minimum splits. If splitsRequired is less than
-            // or equal to m move towards left i.e., smaller values
-            if (minimumSubarraysRequired(nums, maxSumAllowed) <= m) {
-                right = maxSumAllowed - 1;
-                minimumLargestSplitSum = maxSumAllowed;
-            } else {
-                // Move towards right if splitsRequired is more than m
-                left = maxSumAllowed + 1;
+    bool check(vector<int>& nums, int m, int mid){
+        int sum = 0, cnt = 1;
+        for(auto n : nums){
+            if(sum + n > mid){
+                sum = n;
+                cnt++;
+            }
+            else {
+                sum += n;
             }
         }
-        
-        return minimumLargestSplitSum;
+        return cnt <= m;
     }
 };
