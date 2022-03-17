@@ -7,12 +7,17 @@
 <strong><span style="font-size:18px">Example 1:</span></strong></p>
 
 <pre><span style="font-size:18px"><strong>Input:</strong>
-N = 1</span>
+N = 2</span>
 <span style="font-size:18px">K = 0</span>
 <span style="font-size:18px"><strong>Output:</strong>
-21
+441
 </span><span style="font-size:18px"><strong>Explanation:</strong>
-All 21 consonants.</span>
+Total of 441 unique words are possible
+of length 2 that will have K( =0) vowels
+together, e.g. "bc", "cd", "df", etc are
+valid words while "ab" (with 1 vowel) is
+not a valid word.</span>
+
 </pre>
 
 <p><strong><span style="font-size:18px">Example 2:</span></strong></p>
@@ -24,7 +29,8 @@ N = 1</span>
 26</span>
 <span style="font-size:18px"><strong>Explanation:</strong>
 All the english alphabets including</span>
-<span style="font-size:18px">vowels and consonants.</span>
+<span style="font-size:18px">vowels and consonants; as atmost K( =1)
+vowel can be taken.</span>
 </pre>
 
 <p><br>
